@@ -15,6 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import Collection from '../Collection/Collection';
+import SearchGames from '../SearchGames/SearchGames';
 
 import './App.css';
 
