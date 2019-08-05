@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import CollectionItem from '../CollectionItem/CollectionItem'
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -14,11 +15,23 @@ class Collection extends Component {
 
   render() {
     return (
+      <>
       <div>
         <p>
           Collection
         </p>
       </div>
+      <table className="collectionTable">
+        <thead>
+            <tr><th>Game</th><th>Category</th><th>Players</th><th>Playtime</th><th>Rating</th><th>Weight</th><th>&nbsp;</th></tr>
+        </thead>
+        <tbody>
+          {this.props.reduxStore.userCollection.map((game, i) => {
+            return (<CollectionItem key={i} game={game} />);
+          })}
+        </tbody>
+      </table>
+      </>
     )
   }
 

@@ -18,6 +18,3 @@ function* fetchUserCollectionSaga() {
 }
 
 export default fetchUserCollectionSaga;
-
-
-
