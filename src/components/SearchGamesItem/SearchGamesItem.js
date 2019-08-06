@@ -4,22 +4,21 @@ import Categorize from '../Categorize/Categorize'
 
 class SearchGamesItem extends Component {
 
-    state = {
-        category: this.props.game.categories[0],
-    }
-    // Renders the list of animals
 
     // handleDelete = () => {
     //     this.props.dispatch({ type: 'DELETE_ANIMAL', payload: this.props.classData.id });
     // }
-    componentDidMount(){
-        console.log('---- need to find categories', this.state.category);
-        console.log('ternary function time', this.greeting(this.state.category))
+
+    handleAdd = () => {
+        let myPayload = {
+            game: this.props.game,
+            user: this.props.reduxStore.user.id
+        }
+        this.props.dispatch({type: 'ADD_GAME', payload: myPayload})
     }
 
-
-    greeting = (person) => {
-        var name = person ? person.id : "";
+    whyTho = (game) => {
+        let name = game ? game.id : "";
         return Categorize(name);
     }
 
@@ -27,12 +26,12 @@ class SearchGamesItem extends Component {
         return (
             <tr>
                 <td>{this.props.game.name}</td>
-                <td>{this.greeting(this.state.category)}</td>
+                <td>{this.whyTho(this.props.game.categories[0])}</td>
                 <td>{this.props.game.min_players} - {this.props.game.max_players}</td>
                 <td>{this.props.game.min_playtime} - {this.props.game.max_playtime}</td>
                 <td>{this.props.game.year_published}</td>
                 <td>{this.props.game.publishers[0]}</td>
-                {/* <td><button onClick={this.handleDelete}>Delete</button></td> */}
+                <td><button onClick={this.handleAdd}>Add</button></td>
             </tr>
         );
     }
