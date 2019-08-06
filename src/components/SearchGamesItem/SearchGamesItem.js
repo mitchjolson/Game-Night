@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Categorize from '../Categorize/Categorize'
 
 class SearchGamesItem extends Component {
 
@@ -18,8 +19,8 @@ class SearchGamesItem extends Component {
 
 
     greeting = (person) => {
-        var name = person ? person.id : "stranger";
-        return name;
+        var name = person ? person.id : "";
+        return Categorize(name);
     }
 
     render() {
@@ -28,9 +29,9 @@ class SearchGamesItem extends Component {
                 <td>{this.props.game.name}</td>
                 <td>{this.greeting(this.state.category)}</td>
                 <td>{this.props.game.min_players} - {this.props.game.max_players}</td>
-                <td>{this.props.game.playing_time}</td>
-                <td>{this.props.game.rating}</td>
-                <td>{this.props.game.weight}</td>
+                <td>{this.props.game.min_playtime} - {this.props.game.max_playtime}</td>
+                <td>{this.props.game.year_published}</td>
+                <td>{this.props.game.publishers[0]}</td>
                 {/* <td><button onClick={this.handleDelete}>Delete</button></td> */}
             </tr>
         );
