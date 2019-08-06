@@ -18,10 +18,22 @@ router.get('/:id', (req, res) => {
             res.send(response.rows)
         })
         .catch((error) => {
-            console.log('error getting animals', error)
+            console.log('error getting collection', error)
             res.sendStatus(500)
         })
 });
+
+router.post('/:id', (req, res) => {
+    console.log('adding game for user, req.params is:', req.params)
+    console.log('adding game for user, req.body is:', req.body)
+        .then((response) => {
+            res.sendStatus(201)
+        })
+        .catch((error) => {
+            console.log('error posting game', error)
+            res.sendStatus(500)
+        })
+})
 
 /**
  * POST route template
