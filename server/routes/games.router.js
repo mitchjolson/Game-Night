@@ -18,14 +18,17 @@ router.get('/:id', (req, res) => {
             res.send(response.rows)
         })
         .catch((error) => {
-            console.log('error getting collection', error)
+            console.log('error getting collection', error);
             res.sendStatus(500)
         })
 });
 
 router.post('/:id', (req, res) => {
-    console.log('adding game for user, req.params is:', req.params)
-    console.log('adding game for user, req.body is:', req.body)
+    console.log('adding game for user, req.params is:', req.params);
+    console.log('adding game for user, req.body is:', req.body);
+    const sqlText1 = 'insert into games (atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);';
+    const sqlValues1 = [req.body.id, req.body.name, req.body.description, req.body.publishers[0], req.body.year_published, req.body.min_players, req.body.max_players, req.body.max_playtime, req.body.categories[0].id, req.body.average_user_rating];
+    pool.query(sqlText1, sqlValues1)
         .then((response) => {
             res.sendStatus(201)
         })
