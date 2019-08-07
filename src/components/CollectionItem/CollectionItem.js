@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Categorize from '../Categorize/Categorize'
 
 class CollectionItem extends Component {
     // Renders the list of animals
@@ -12,7 +13,7 @@ class CollectionItem extends Component {
         return (
             <tr>
                 <td>{this.props.game.name}</td>
-                <td>{this.props.game.category}</td>
+                <td>{Categorize(this.props.game.category)}</td>
                 <td>{this.props.game.min_players} - {this.props.game.max_players}</td>
                 <td>{this.props.game.playtime}</td>
                 <td>{this.props.game.rating}</td>
