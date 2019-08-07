@@ -23,6 +23,21 @@ router.get('/:id', (req, res) => {
         })
 });
 
+router.post('/checkcollection/:id', (req, res) => {
+    console.log('checking to see if user already has game, req.params.id is:', req.params.id)
+    console.log('checking to see if user already has game, req.body.id is:', req.body.id)
+    const sqlText = 'select game_id from user_games join games on games.atlas_id = user_games.game_id where user_id = $1 and game_id = $2;'
+    const sqlData = [req.params.id, req.body.id]
+    pool.query(sqlText, sqlData)
+        .then((response) => {
+            res.send(response.rows)
+        })
+        .catch((error) => {
+            console.log('error getting collection', error);
+            res.sendStatus(500)
+        })
+});
+
 router.post('/:id', (req, res) => {
     const sqlText = 'insert into games (atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);';
     const sqlValues = [req.body.id, req.body.name, req.body.description, req.body.publishers[0], req.body.year_published, req.body.min_players, req.body.max_players, req.body.max_playtime, req.body.categories[0].id, req.body.average_user_rating];
