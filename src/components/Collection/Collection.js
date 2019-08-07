@@ -23,7 +23,7 @@ class Collection extends Component {
       </div>
       <table className="collectionTable">
         <thead>
-            <tr><th>Game</th><th>Category</th><th>Players</th><th>Playtime</th><th>Rating</th><th>Weight</th><th>&nbsp;</th></tr>
+            <tr><th>Game</th><th>Category</th><th>Players</th><th>Playtime</th><th>Rating</th><th>&nbsp;</th></tr>
         </thead>
         <tbody>
           {this.props.reduxStore.userCollection.map((game, i) => {

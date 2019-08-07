@@ -14,9 +14,8 @@ class CollectionItem extends Component {
                 <td>{this.props.game.name}</td>
                 <td>{this.props.game.category}</td>
                 <td>{this.props.game.min_players} - {this.props.game.max_players}</td>
-                <td>{this.props.game.playing_time}</td>
+                <td>{this.props.game.playtime}</td>
                 <td>{this.props.game.rating}</td>
-                <td>{this.props.game.weight}</td>
                 {/* <td><button onClick={this.handleDelete}>Delete</button></td> */}
             </tr>
         );
