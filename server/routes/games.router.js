@@ -38,7 +38,21 @@ router.post('/checkcollection/:id', (req, res) => {
         })
 });
 
-router.post('/:id', (req, res) => {
+router.post('/checkgamedb', (req, res) => {
+    console.log('checking to see if game exists in DB, req.body.id is:', req.body.id)
+    const sqlText = 'select atlas_id from games where atlas_id = $1;'
+    const sqlData = [req.body.id]
+    pool.query(sqlText, sqlData)
+        .then((response) => {
+            res.send(response.rows)
+        })
+        .catch((error) => {
+            console.log('error getting collection', error);
+            res.sendStatus(500)
+        })
+});
+
+router.post('/', (req, res) => {
     const sqlText = 'insert into games (atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);';
     const sqlValues = [req.body.id, req.body.name, req.body.description, req.body.publishers[0], req.body.year_published, req.body.min_players, req.body.max_players, req.body.max_playtime, req.body.categories[0].id, req.body.average_user_rating];
     pool.query(sqlText, sqlValues)
@@ -52,6 +66,7 @@ router.post('/:id', (req, res) => {
 })
 
 router.post('/link/:id', (req, res) => {
+    console.log('linking game to user,', req.params.id, req.body.id)
     const sqlText = 'insert into user_games (user_id, game_id) values ($1, $2);';
     const sqlValues = [req.params.id, req.body.id];
     pool.query(sqlText, sqlValues)
