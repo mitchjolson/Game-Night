@@ -1,6 +1,6 @@
-const userCollection = (state = [], action) => {
+const gameDetails = (state = [], action) => {
     switch (action.type) {
-        case 'SET_USER_COLLECTION':
+        case 'SET_GAME_DETAILS':
             return action.payload;
         default:
             return state;
@@ -9,4 +9,4 @@ const userCollection = (state = [], action) => {
 
 // loginMode will be on the redux state at:
 // state.loginMode
-export default userCollection;
+export default gameDetails;

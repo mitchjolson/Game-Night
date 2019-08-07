@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import Categorize from '../Categorize/Categorize'
 
 class CollectionItem extends Component {
-    // Renders the list of animals
+    
+    componentDidMount() {
+        console.log('this.props is', this.props)
+    }
 
-    // handleDelete = () => {
-    //     this.props.dispatch({ type: 'DELETE_ANIMAL', payload: this.props.classData.id });
-    // }
+    handleDetails = () => {
+        this.props.dispatch({ type: 'SET_GAME_DETAILS', payload: this.props.game })
+        console.log(this.props.history)
+        this.props.history.push('/gamedetails')
+    }
 
     render() {
         return (
@@ -17,7 +22,8 @@ class CollectionItem extends Component {
                 <td>{this.props.game.min_players} - {this.props.game.max_players}</td>
                 <td>{this.props.game.playtime}</td>
                 <td>{this.props.game.rating}</td>
-                {/* <td><button onClick={this.handleDelete}>Delete</button></td> */}
+                <td><button onClick={this.handleDetails}>Details</button></td>
+                <td><button onClick={this.handleDelete}>Delete</button></td>
             </tr>
         );
     }
@@ -25,6 +31,6 @@ class CollectionItem extends Component {
 
 const mapStateToProps = (reduxStore) => ({
     reduxStore
-});
+})
 
 export default connect(mapStateToProps)(CollectionItem);
