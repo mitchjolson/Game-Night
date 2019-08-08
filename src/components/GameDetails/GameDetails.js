@@ -5,11 +5,16 @@ import { connect } from 'react-redux';
 
 class GameDetails extends Component {
 
+    componentDidMount = () => {
+        console.log('gameDetails:', this.props.reduxStore.searchGame)
+    }
+
     render() {
         return (
             <>
                 <div>
-                    
+                    <p> {this.props.reduxStore.gameDetails.name} </p>
+                    <img src={this.props.reduxStore.gameDetails.image_url} alt={this.props.reduxStore.gameDetails.name} />
                 </div>
             </>
         )
