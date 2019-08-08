@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import categorize from '../Categorize/Categorize'
 
 
 class GameDetails extends Component {
@@ -15,8 +15,8 @@ class GameDetails extends Component {
             user: this.props.reduxStore.user.id
         }
         this.props.dispatch({ type: 'ADD_GAME_FROM_DETAILS', payload: myPayload });
-        // alert(`Added ${this.props.reduxStore.gameDetails.name} to your collection.`)
-        // this.props.history.push('/search')
+        alert(`Added ${this.props.reduxStore.gameDetails.name} to your collection.`)
+        this.props.history.push('/search')
     }
 
     checkIfOwned = () => {
@@ -37,8 +37,20 @@ class GameDetails extends Component {
                 </div>
                 <div>
                     <h1> {this.props.reduxStore.gameDetails.name} </h1>
+                    <p>{this.props.reduxStore.gameDetails.year_published}</p>
                     <h3>by {this.props.reduxStore.gameDetails.publisher}</h3>
                     {this.checkIfOwned()}
+                </div>
+                <div>
+                    <ul>
+                        <li>Rating: {this.props.reduxStore.gameDetails.rating}</li>
+                        <li>Players: {this.props.reduxStore.gameDetails.min_players} - {this.props.reduxStore.gameDetails.max_players}</li>
+                        <li>Playtime: {this.props.reduxStore.gameDetails.playtime} minutes</li>
+                        <li>Category: {categorize(this.props.reduxStore.gameDetails.category)}</li>
+                    </ul>
+                </div>
+                <div>
+                    <p>{this.props.reduxStore.gameDetails.description}</p>
                 </div>
             </>
         )
