@@ -18,7 +18,6 @@ class CollectionItem extends Component {
                 <td>{this.props.game.playtime}</td>
                 <td>{this.props.game.rating}</td>
                 <td><button onClick={this.handleDetails}>Details</button></td>
-                <td><button onClick={this.handleDelete}>Delete</button></td>
             </tr>
         );
     }

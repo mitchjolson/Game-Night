@@ -19,6 +19,16 @@ class GameDetails extends Component {
         this.props.history.push('/search')
     }
 
+    handleRemove = () => {
+        const myPayload = {
+            game_id: this.props.reduxStore.gameDetails.atlas_id,
+            user: this.props.reduxStore.user.id
+        }
+        this.props.dispatch({ type: 'REMOVE_GAME_FROM_COLLECTION', payload: myPayload });
+        alert(`Removed ${this.props.reduxStore.gameDetails.name} from your collection.`)
+        this.props.history.push('/search')
+    }
+
     checkIfOwned = () => {
         for(let i=0; i < this.props.reduxStore.userCollection.length; i++){
             console.log('checking if these two are equal:', this.props.reduxStore.userCollection[i].atlas_id, this.props.reduxStore.gameDetails.atlas_id)
