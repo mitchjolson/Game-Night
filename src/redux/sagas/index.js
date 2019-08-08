@@ -4,7 +4,8 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import fetchUserCollectionSaga from './fetchUserCollectionSaga';
 import searchGamesSaga from './searchGamesSaga';
-import addGameSaga from './addGameSaga'
+import addGameSaga from './addGameSaga';
+import getGameDetailsSaga from './getGameDetailsSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     fetchUserCollectionSaga(),
     searchGamesSaga(),
     addGameSaga(),
+    getGameDetailsSaga(),
   ]);
 }

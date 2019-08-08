@@ -3,14 +3,9 @@ import { connect } from 'react-redux';
 import Categorize from '../Categorize/Categorize'
 
 class CollectionItem extends Component {
-    
-    componentDidMount() {
-        console.log('this.props is', this.props)
-    }
 
     handleDetails = () => {
-        this.props.dispatch({ type: 'SET_GAME_DETAILS', payload: this.props.game })
-        console.log(this.props.history)
+        this.props.dispatch({ type: 'FETCH_GAME_DETAILS', payload: this.props.game.atlas_id })
         this.props.history.push('/gamedetails')
     }
 
