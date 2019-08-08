@@ -15,6 +15,18 @@ class GameDetails extends Component {
             user: this.props.reduxStore.user.id
         }
         this.props.dispatch({ type: 'ADD_GAME_FROM_DETAILS', payload: myPayload });
+        // alert(`Added ${this.props.reduxStore.gameDetails.name} to your collection.`)
+        // this.props.history.push('/search')
+    }
+
+    checkIfOwned = () => {
+        for(let i=0; i < this.props.reduxStore.userCollection.length; i++){
+            console.log('checking if these two are equal:', this.props.reduxStore.userCollection[i].atlas_id, this.props.reduxStore.gameDetails.atlas_id)
+            if (this.props.reduxStore.userCollection[i].atlas_id === this.props.reduxStore.gameDetails.atlas_id){
+                return <button onClick={this.handleRemove}>Remove from Collection</button>
+            }
+        }
+        return <button onClick={this.handleAdd}>Add to Collection</button>
     }
 
     render() {
@@ -26,7 +38,7 @@ class GameDetails extends Component {
                 <div>
                     <h1> {this.props.reduxStore.gameDetails.name} </h1>
                     <h3>by {this.props.reduxStore.gameDetails.publisher}</h3>
-                    <button onClick={this.handleAdd}>Add to Collection</button>
+                    {this.checkIfOwned()}
                 </div>
             </>
         )

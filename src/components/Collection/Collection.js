@@ -6,7 +6,6 @@ class Collection extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER_COLLECTION', payload: this.props.reduxStore.user.id })
-    // console.log('this.props is', this.props)
   }
 
   render() {
