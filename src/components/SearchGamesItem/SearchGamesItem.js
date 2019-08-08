@@ -14,7 +14,12 @@ class SearchGamesItem extends Component {
             game: this.props.game,
             user: this.props.reduxStore.user.id
         }
-        this.props.dispatch({type: 'ADD_GAME', payload: myPayload})
+        this.props.dispatch({type: 'ADD_GAME', payload: myPayload});
+    }
+
+    handleDetails = () => {
+        this.props.dispatch({type: 'SET_GAME_DETAILS', payload: this.props.game});
+        this.props.history.push('/gamedetails');
     }
 
     whyTho = (game) => {
@@ -31,6 +36,7 @@ class SearchGamesItem extends Component {
                 <td>{this.props.game.min_playtime} - {this.props.game.max_playtime}</td>
                 <td>{this.props.game.year_published}</td>
                 <td>{this.props.game.publishers[0]}</td>
+                <td><button onClick={this.handleDetails}>Details</button></td>
                 <td><button onClick={this.handleAdd}>Add</button></td>
             </tr>
         );

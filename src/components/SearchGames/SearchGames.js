@@ -37,11 +37,11 @@ class SearchGames extends Component {
             </form>
             <table className="collectionTable">
                 <thead>
-                    <tr><th>Game</th><th>Category</th><th>Players</th><th>Playtime</th><th>Year</th><th>Publisher</th><th>&nbsp;</th></tr>
+                    <tr><th>Game</th><th>Category</th><th>Players</th><th>Playtime</th><th>Year</th><th>Publisher</th><th>&nbsp;</th><th>&nbsp;</th></tr>
                 </thead>
                 <tbody>
                     {this.props.reduxStore.searchGame.map((game, i) => {                            
-                        return (<SearchGamesItem key={i} game={game} />);
+                        return (<SearchGamesItem key={i} game={game} history={this.props.history}/>);
                     })}
                 </tbody>
             </table>
