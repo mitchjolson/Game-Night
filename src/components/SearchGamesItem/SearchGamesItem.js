@@ -14,6 +14,7 @@ class SearchGamesItem extends Component {
             game: this.props.game,
             user: this.props.reduxStore.user.id
         }
+        console.log('adding game, payload is:', myPayload)
         this.props.dispatch({type: 'ADD_GAME', payload: myPayload});
     }
 
