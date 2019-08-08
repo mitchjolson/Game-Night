@@ -11,7 +11,7 @@ app.use(bodyParser.json());
  */
 router.get('/:id', (req, res) => {
     console.log('getting games for user, req.params.id is:', req.params.id)
-    const sqlText = 'select games.id, atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating from games join user_games on games.atlas_id = user_games.game_id where user_id = $1;'
+    const sqlText = 'select games.id, atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating, image from games join user_games on games.atlas_id = user_games.game_id where user_id = $1;'
     const sqlData = [req.params.id]
     pool.query(sqlText, sqlData)
         .then((response) => {
@@ -53,8 +53,8 @@ router.post('/checkgamedb', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const sqlText = 'insert into games (atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);';
-    const sqlValues = [req.body.id, req.body.name, req.body.description, req.body.publishers[0], req.body.year_published, req.body.min_players, req.body.max_players, req.body.max_playtime, req.body.categories[0].id, req.body.average_user_rating];
+    const sqlText = 'insert into games (atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating, image) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);';
+    const sqlValues = [req.body.id, req.body.name, req.body.description, req.body.publishers[0], req.body.year_published, req.body.min_players, req.body.max_players, req.body.max_playtime, req.body.categories[0].id, req.body.average_user_rating, req.body.images.medium];
     pool.query(sqlText, sqlValues)
         .then((response) => {
             res.sendStatus(201)

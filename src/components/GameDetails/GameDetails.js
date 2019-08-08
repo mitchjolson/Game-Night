@@ -14,7 +14,7 @@ class GameDetails extends Component {
             <>
                 <div>
                     <p> {this.props.reduxStore.gameDetails.name} </p>
-                    <img src={this.props.reduxStore.gameDetails.image_url} alt={this.props.reduxStore.gameDetails.name} />
+                    <img src={this.props.reduxStore.gameDetails.image} alt={this.props.reduxStore.gameDetails.name} />
                 </div>
             </>
         )

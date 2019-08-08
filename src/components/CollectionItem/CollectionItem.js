@@ -5,7 +5,7 @@ import Categorize from '../Categorize/Categorize'
 class CollectionItem extends Component {
 
     handleDetails = () => {
-        this.props.dispatch({ type: 'FETCH_GAME_DETAILS', payload: this.props.game.atlas_id })
+        this.props.dispatch({ type: 'SET_GAME_DETAILS', payload: this.props.game })
         this.props.history.push('/gamedetails')
     }
 
