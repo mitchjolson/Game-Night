@@ -18,7 +18,20 @@ class SearchGamesItem extends Component {
     }
 
     handleDetails = () => {
-        this.props.dispatch({type: 'SET_GAME_DETAILS', payload: this.props.game});
+        const gameDeets = {
+            atlas_id: this.props.game.id,
+            category: this.whyTho(this.props.game.categories[0]),
+            description: this.props.game.description,
+            image: this.props.game.images.medium,
+            max_players: this.props.game.max_players,
+            min_players: this.props.game.min_players,
+            name: this.props.game.name,
+            playtime: this.props.game.max_playtime,
+            publisher: this.props.game.publishers[0],
+            rating: this.props.game.average_user_rating,
+            year_published: this.props.game.year_published
+        }
+        this.props.dispatch({type: 'SET_GAME_DETAILS', payload: gameDeets});
         this.props.history.push('/gamedetails');
     }
 
