@@ -119,7 +119,7 @@ router.post('/', (req, res) => {
 router.post('/addfromdetails', (req, res) => {
     console.log('in post new game to DB from details')
     const sqlText = 'insert into games (atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating, image) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);';
-    const sqlValues = [req.body.atlas_id, req.body.name, req.body.description, req.body.publisher, req.body.year_published, req.body.min_players, req.body.max_players, req.body.playtime, req.body.category, req.body.rating, req.body.imag];
+    const sqlValues = [req.body.atlas_id, req.body.name, req.body.description, req.body.publisher, req.body.year_published, req.body.min_players, req.body.max_players, req.body.playtime, req.body.category, req.body.rating, req.body.image];
     pool.query(sqlText, sqlValues)
         .then((response) => {
             res.sendStatus(201)

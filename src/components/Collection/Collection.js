@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import CollectionItem from '../CollectionItem/CollectionItem'
+import CollectionItem from '../CollectionItem/CollectionItem';
+import CollectionItemGrid from '../CollectionItem/CollectionItemGrid';
+import CollectionItemTable from '../CollectionItem/CollectionItemTable';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -24,8 +26,43 @@ const styles = {
 
 class Collection extends Component {
 
+  state = {
+    view: 'table',
+  }
+
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER_COLLECTION', payload: this.props.reduxStore.user.id })
+  }
+
+  setView = (selectedView) => {
+      this.setState({
+        view: selectedView
+      })
+  }
+
+  loadView = () => {
+    if(this.state.view === 'grid'){
+      return (
+        <>
+        <div>
+          {this.props.reduxStore.userCollection.map((game, i) => {
+            return (<CollectionItemGrid key={i} game={game} history={this.props.history} />);
+          })}
+        </div>
+        </>
+      )
+    }
+    else{
+      return (
+        <>
+        <div>
+          {this.props.reduxStore.userCollection.map((game, i) => {
+            return (<CollectionItemTable key={i} game={game} history={this.props.history} />);
+          })}
+        </div>
+        </>
+      )
+    }
   }
 
   render() {
@@ -35,12 +72,10 @@ class Collection extends Component {
         <p>
           Collection
         </p>
+        <button onClick={() => this.setView('table')}>Table</button>
+        <button onClick={() => this.setView('grid')}>Grid</button>
       </div>
-      <div>
-          {this.props.reduxStore.userCollection.map((game, i) => {
-            return (<CollectionItem key={i} game={game} history={this.props.history}/>);
-          })}
-      </div>
+      {this.loadView()}
       </>
     )
   }

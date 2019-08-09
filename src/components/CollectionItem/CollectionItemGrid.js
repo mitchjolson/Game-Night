@@ -23,7 +23,7 @@ const styles = {
     },
 };
 
-class CollectionItem extends Component {
+class CollectionItemGrid extends Component {
 
     handleDetails = () => {
         this.props.dispatch({ type: 'SET_GAME_DETAILS', payload: this.props.game })
@@ -33,6 +33,7 @@ class CollectionItem extends Component {
     render() {
         const { classes } = this.props;
         return (
+            <>
             <div className="div-grid">
             <Card onClick={this.handleDetails} className={classes.card}>
                 <CardActionArea>
@@ -52,14 +53,7 @@ class CollectionItem extends Component {
                 </CardActionArea>
             </Card>
             </div>
-            // <tr>
-            //     <td>{this.props.game.name}</td>
-            //     <td>{Categorize(this.props.game.category)}</td>
-            //     <td>{this.props.game.min_players} - {this.props.game.max_players}</td>
-            //     <td>{this.props.game.playtime}</td>
-            //     <td>{this.props.game.rating}</td>
-            //     <td><button onClick={this.handleDetails}>Details</button></td>
-            // </tr>
+            </>
         );
     }
 }
@@ -68,4 +62,4 @@ const mapStateToProps = (reduxStore) => ({
     reduxStore
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(CollectionItem));
+export default connect(mapStateToProps)(withStyles(styles)(CollectionItemGrid));
