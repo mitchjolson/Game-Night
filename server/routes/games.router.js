@@ -17,7 +17,7 @@ function checkIt(item) {
 
 router.get('/:id', (req, res) => {
     console.log('getting games for user, req.params.id is:', req.params.id)
-    const sqlText = 'select games.id, atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating, image from games join user_games on games.atlas_id = user_games.game_id where user_id = $1;'
+    const sqlText = 'select games.id, atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating, image from games join user_games on games.atlas_id = user_games.game_id where user_id = $1 order by name asc;'
     const sqlData = [req.params.id]
     pool.query(sqlText, sqlData)
         .then((response) => {
