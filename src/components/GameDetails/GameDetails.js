@@ -26,7 +26,7 @@ class GameDetails extends Component {
         }
         this.props.dispatch({ type: 'REMOVE_GAME_FROM_COLLECTION', payload: myPayload });
         alert(`Removed ${this.props.reduxStore.gameDetails.name} from your collection.`)
-        this.props.history.push('/search')
+        this.props.history.push('/collection')
     }
 
     checkIfOwned = () => {

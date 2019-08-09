@@ -33,6 +33,7 @@ class SearchGamesItem extends Component {
             year_published: this.props.game.year_published
         }
         this.props.dispatch({type: 'SET_GAME_DETAILS', payload: gameDeets});
+        this.props.dispatch({ type: 'SET_GAME_SEARCH', payload: [] });
         this.props.history.push('/gamedetails');
     }
 
