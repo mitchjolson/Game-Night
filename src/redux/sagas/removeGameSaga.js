@@ -4,7 +4,7 @@ import axios from 'axios';
 // worker Saga: will be fired on "REGISTER" actions
 function* removeGame(action) {
     try {
-        yield axios.delete(`/api/games/${action.payload.user}`, action.payload.game_id);
+        yield axios.delete(`/api/games/${action.payload.user}`, { data: action.payload });
     } catch (error) {
         console.log('Error removing game from collection:', error);
     }

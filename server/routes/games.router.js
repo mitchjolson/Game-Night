@@ -29,6 +29,21 @@ router.get('/:id', (req, res) => {
         })
 });
 
+router.delete('/:id', (req, res) => {
+    console.log('removing a game from user collection, req.params.id is:', req.params.id)
+    console.log('removing a game from user collection, req.body is:', req.body)
+    const sqlText = 'delete from user_games where user_id = $1 and game_id = $2;'
+    const sqlValues = [req.params.id, req.body.game_id]
+    pool.query(sqlText, sqlValues)
+        .then((response) => {
+            res.sendStatus(200)
+        })
+        .catch((error) => {
+            console.log('error removing game from user collection', error);
+            res.sendStatus(500)
+        })
+})
+
 router.post('/checkcollection/:id', (req, res) => {
     console.log('checking to see if user already has game, req.params.id is:', req.params.id)
     console.log('checking to see if user already has game, req.body.id is:', req.body.id)
