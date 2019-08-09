@@ -74,6 +74,20 @@ router.post('/checkcollectionfromdetails/:id', (req, res) => {
         })
 });
 
+router.post('/checkgamedb', (req, res) => {
+    console.log('checking to see if game exists in DB, req.body.id is:', req.body.id)
+    const sqlText = 'select atlas_id from games where atlas_id = $1;'
+    const sqlData = [req.body.id]
+    pool.query(sqlText, sqlData)
+        .then((response) => {
+            res.send(response.rows)
+        })
+        .catch((error) => {
+            console.log('error checking if game exists in DB', error);
+            res.sendStatus(500)
+        })
+});
+
 router.post('/checkgamedbfromdetails', (req, res) => {
     console.log('checking to see if game exists in DB, req.body.id is:', req.body.id,)
     const sqlText = 'select atlas_id from games where atlas_id = $1;'

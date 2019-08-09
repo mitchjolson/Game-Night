@@ -30,8 +30,8 @@ function* addGame(action) {
 }
 
 function* addGameFromDetails(action) {
-    console.log('in addGame, action.payload.game is', action.payload.game);
-    console.log('in addGame, userID is', action.payload.user);
+    console.log('in addGame from details, action.payload.game is', action.payload.game);
+    console.log('in addGame from details, userID is', action.payload.user);
     try {
         const response = yield axios.post(`/api/games/checkgamedbfromdetails`, action.payload.game);
         console.log('checking if game exists in DB, response.data is', response.data);
