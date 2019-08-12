@@ -76,13 +76,13 @@ class FriendCollection extends Component {
   render() {
     return (
       <>
-      <FriendLog/>
       <div>
         <h1>Collection</h1>
         <button onClick={() => this.setView('table')}>Table</button>
         <button onClick={() => this.setView('grid')}>Grid</button>
       </div>
       {this.loadView()}
+      <FriendLog/>
       </>
     )
   }
