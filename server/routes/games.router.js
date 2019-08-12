@@ -41,7 +41,7 @@ router.get('/:id', (req, res) => {
 
 router.get('/log/:id', (req, res) => {
     console.log('getting activity log for friend, req.params.id is:', req.params.id)
-    const sqlText = `select user_id, action, to_char(entry_date, 'MONTH DD YYYY'), name, username from game_log join games on game_log.game_id = games.atlas_id join "user" on game_log.user_id = "user".id where user_id = $1;;`
+    const sqlText = `select user_id, action, to_char(entry_date, 'Month DD YYYY'), name, username from game_log join games on game_log.game_id = games.atlas_id join "user" on game_log.user_id = "user".id where user_id = $1;;`
     const sqlData = [req.params.id]
     pool.query(sqlText, sqlData)
         .then((response) => {
