@@ -61,7 +61,7 @@ router.post('/checkcollection/:id', (req, res) => {
 
 router.post('/checkcollectionfromdetails/:id', (req, res) => {
     console.log('checking to see if user already has game, req.params.id is:', req.params.id)
-    console.log('checking to see if user already has game, req.body.id is:', req.body.id)
+    console.log('checking to see if user already has game, req.body.atlas_id is:', req.body.atlas_id)
     const sqlText = 'select game_id from user_games join games on games.atlas_id = user_games.game_id where user_id = $1 and game_id = $2;'
     const sqlData = [req.params.id, req.body.atlas_id]
     pool.query(sqlText, sqlData)
@@ -89,7 +89,7 @@ router.post('/checkgamedb', (req, res) => {
 });
 
 router.post('/checkgamedbfromdetails', (req, res) => {
-    console.log('checking to see if game exists in DB, req.body.id is:', req.body.id,)
+    console.log('checking to see if game exists in DB, req.body.atlas_id is:', req.body.atlas_id,)
     const sqlText = 'select atlas_id from games where atlas_id = $1;'
     const sqlData = [req.body.atlas_id]
     pool.query(sqlText, sqlData)
