@@ -17,6 +17,7 @@ import UserPage from '../UserPage/UserPage';
 import Collection from '../Collection/Collection';
 import SearchGames from '../SearchGames/SearchGames';
 import GameDetails from '../GameDetails/GameDetails';
+import Friends from '../Friends/Friends';
 
 import './App.css';
 
@@ -65,6 +66,11 @@ class App extends Component {
               exact
               path="/gamedetails"
               component={GameDetails}
+            />
+            <ProtectedRoute
+              exact
+              path="/friends"
+              component={Friends}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

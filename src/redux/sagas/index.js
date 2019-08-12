@@ -6,6 +6,7 @@ import fetchUserCollectionSaga from './fetchUserCollectionSaga';
 import searchGamesSaga from './searchGamesSaga';
 import addGameSaga from './addGameSaga';
 import removeGameSaga from './removeGameSaga';
+import fetchFriendsSaga from './fetchFriendsSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     searchGamesSaga(),
     addGameSaga(),
     removeGameSaga(),
+    fetchFriendsSaga(),
   ]);
 }
