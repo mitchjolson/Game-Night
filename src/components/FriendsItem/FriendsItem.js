@@ -5,6 +5,7 @@ class FriendsItem extends Component {
 
     handleCollection = () => {
         this.props.dispatch({ type: 'FETCH_FRIEND_COLLECTION', payload: this.props.friend.friend_id })
+        this.props.dispatch({ type: 'FETCH_FRIEND_LOG', payload: this.props.friend.friend_id })
         this.props.history.push('/friendcollection')
     }
 

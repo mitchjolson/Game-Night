@@ -7,7 +7,8 @@ import searchGame from './searchGameReducer';
 import gameDetails from './gameDetailsReducer';
 import collectionView from './collectionViewReducer';
 import friends from './friendsReducer';
-import friendCollection from './friendCollectionReducer'
+import friendCollection from './friendCollectionReducer';
+import friendLog from './friendLogReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   collectionView,
   friends,
   friendCollection,
+  friendLog,
 });
 
 export default rootReducer;

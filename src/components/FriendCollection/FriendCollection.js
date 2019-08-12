@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import FriendCollectionItemGrid from '../FriendCollectionItem/FriendCollectionItemGrid';
 import FriendCollectionItemTable from '../FriendCollectionItem/FriendCollectionItemTable';
+import FriendLog from '../FriendLog/FriendLog';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -75,10 +76,9 @@ class FriendCollection extends Component {
   render() {
     return (
       <>
+      <FriendLog/>
       <div>
-        <p>
-          Collection
-        </p>
+        <h1>Collection</h1>
         <button onClick={() => this.setView('table')}>Table</button>
         <button onClick={() => this.setView('grid')}>Grid</button>
       </div>

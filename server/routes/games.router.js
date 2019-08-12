@@ -39,6 +39,20 @@ router.get('/:id', (req, res) => {
         })
 });
 
+router.get('/log/:id', (req, res) => {
+    console.log('getting activity log for friend, req.params.id is:', req.params.id)
+    const sqlText = 'select user_id, action, entry_date, name from game_log join games on game_log.game_id = games.atlas_id where user_id = $1;'
+    const sqlData = [req.params.id]
+    pool.query(sqlText, sqlData)
+        .then((response) => {
+            res.send(response.rows)
+        })
+        .catch((error) => {
+            console.log('error getting friend activity log', error);
+            res.sendStatus(500)
+        })
+});
+
 router.delete('/:id', (req, res) => {
     console.log('removing a game from user collection, req.params.id is:', req.params.id)
     console.log('removing a game from user collection, req.body is:', req.body)
