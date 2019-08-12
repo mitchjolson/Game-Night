@@ -6,12 +6,22 @@ const app = express();
 
 app.use(bodyParser.json());
 
-function checkIt(item) {
-    if(item){
-        return item[0]
+function checkPublisher(publisher) {
+    if(publisher.length === 0){
+        return 'none'
     }
     else{
+        return publisher[0]
+    }
+}
+
+
+checkCategory = (category) => {
+    if( category.length === 0){
         return 'none'
+    }
+    else{
+        return category[0].id;
     }
 }
 
@@ -89,7 +99,7 @@ router.post('/checkgamedb', (req, res) => {
 });
 
 router.post('/checkgamedbfromdetails', (req, res) => {
-    console.log('checking to see if game exists in DB, req.body.atlas_id is:', req.body.atlas_id,)
+    console.log('checking to see if game exists in DB, req.body.id is:', req.body.atlas_id,)
     const sqlText = 'select atlas_id from games where atlas_id = $1;'
     const sqlData = [req.body.atlas_id]
     pool.query(sqlText, sqlData)
@@ -105,7 +115,7 @@ router.post('/checkgamedbfromdetails', (req, res) => {
 router.post('/', (req, res) => {
     console.log('in post new game to DB')
     const sqlText = 'insert into games (atlas_id, name, description, publisher, year_published, min_players, max_players, playtime, category, rating, image) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);';
-    const sqlValues = [req.body.id, req.body.name, req.body.description, checkIt(req.body.publishers), req.body.year_published, req.body.min_players, req.body.max_players, req.body.max_playtime, checkIt(req.body.categories.id), req.body.average_user_rating, req.body.images.medium];
+    const sqlValues = [req.body.id, req.body.name, req.body.description, checkPublisher(req.body.publishers), req.body.year_published, req.body.min_players, req.body.max_players, req.body.max_playtime, checkCategory(req.body.categories), req.body.average_user_rating, req.body.images.medium];
     pool.query(sqlText, sqlValues)
         .then((response) => {
             res.sendStatus(201)
