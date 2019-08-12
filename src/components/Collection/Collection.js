@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import CollectionItem from '../CollectionItem/CollectionItem';
 import CollectionItemGrid from '../CollectionItem/CollectionItemGrid';
 import CollectionItemTable from '../CollectionItem/CollectionItemTable';
 
@@ -31,10 +30,14 @@ class Collection extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER_COLLECTION', payload: this.props.reduxStore.user.id })
+    this.setState({
+      view: this.props.reduxStore.collectionView
+    })
+    this.props.dispatch({ type: 'FETCH_USER_COLLECTION', payload: this.props.reduxStore.user.id });
   }
 
   setView = (selectedView) => {
+    this.props.dispatch({ type: 'SET_COLLECTION_VIEW', payload: selectedView});
       this.setState({
         view: selectedView
       })

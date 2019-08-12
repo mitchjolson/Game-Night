@@ -24,6 +24,7 @@ function* addGame(action) {
         else{
             console.log('user is already linked to game');
         }
+        alert(`Added ${action.payload.game.name} to your collection!`)
     } catch (error) {
         console.log('Error linking game:', error);
     }
