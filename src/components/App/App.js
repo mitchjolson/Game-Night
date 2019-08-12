@@ -18,12 +18,13 @@ import Collection from '../Collection/Collection';
 import SearchGames from '../SearchGames/SearchGames';
 import GameDetails from '../GameDetails/GameDetails';
 import Friends from '../Friends/Friends';
+import FriendCollection from '../FriendCollection/FriendCollection';
 
 import './App.css';
 
 class App extends Component {
   componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
+    this.props.dispatch({type: 'FETCH_USER'});
   }
 
   render() {
@@ -71,6 +72,11 @@ class App extends Component {
               exact
               path="/friends"
               component={Friends}
+            />
+            <ProtectedRoute
+              exact
+              path="/friendcollection"
+              component={FriendCollection}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import FriendsItem from '../FriendsItem/FriendsItem';
 
 class Friends extends Component {
 
@@ -12,6 +13,11 @@ class Friends extends Component {
         return (
             <>
                 <h1>Friends</h1>
+                    <ul>
+                        {this.props.reduxStore.friends.map((friend, i) => {
+                            return (<FriendsItem key={i} friend={friend} history={this.props.history} />);
+                        })}
+                    </ul>
             </>
         )
     }

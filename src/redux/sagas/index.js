@@ -6,6 +6,7 @@ import fetchUserCollectionSaga from './fetchUserCollectionSaga';
 import searchGamesSaga from './searchGamesSaga';
 import addGameSaga from './addGameSaga';
 import removeGameSaga from './removeGameSaga';
+import fetchFriendCollectionSaga from './fetchFriendCollectionSaga';
 import fetchFriendsSaga from './fetchFriendsSaga';
 
 // rootSaga is the primary saga.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     addGameSaga(),
     removeGameSaga(),
     fetchFriendsSaga(),
+    fetchFriendCollectionSaga(),
   ]);
 }
